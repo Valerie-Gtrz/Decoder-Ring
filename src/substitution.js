@@ -4,10 +4,47 @@
 // of the anonymous function on line 6
 
 const substitutionModule = (function () {
-  // you can add any code you want within this function scope
-
   function substitution(input, alphabet, encode = true) {
-    // your solution code here
+    let message = "";
+    const orderedAlpha = "abcdefghijklmnopqrstuvwxyz";
+    smolInput = input.toLowerCase();
+    //if (!alphabet ) return false;
+    //check alphabet length
+    if (alphabet.length !== 26 || !alphabet) return false;
+    //check for repeating chracters
+    for (var i = 0; i < alphabet.length; i++) {
+      if (alphabet.indexOf(alphabet[i]) !== alphabet.lastIndexOf(alphabet[i])) {
+        return false;
+      }
+    }
+    //encode
+    if (encode) {
+      for (let letter of smolInput) {
+        if (orderedAlpha.includes(letter)) {
+          letterIndex = orderedAlpha.indexOf(letter);
+          message += alphabet[letterIndex];
+        } else {
+          if (letter === " ") {
+            message += letter;
+          }
+        }
+      }
+      return message;
+    }
+    //decode
+    if (!encode) {
+      for (let letter of smolInput) {
+        if (alphabet.includes(letter)) {
+          letterIndex = alphabet.indexOf(letter);
+          message += orderedAlpha[letterIndex];
+        } else {
+          if (letter === " ") {
+            message += letter;
+          }
+        }
+      }
+      return message;
+    }
   }
 
   return {

@@ -3,23 +3,28 @@ const substitutionModule = require("../src/substitution.js");
 
 describe("substitutionModule.substitution", () => {
   it("Spaces should be maintained throughout.", () => {
-    const expected = false;
-    const actual1 = caesarModule.caesar("zero", alphabet, encode = true);
-    expect(actual1).to.equal(expected);
+    const keepSpaces = "jrufs cpw";
+    const keepSpacesActual = substitutionModule.substitution("think ful", "xoyqmcgrukswaflnthdjpzibev", encode = true);
+    expect(keepSpacesActual).to.equal(keepSpaces);
   });
   it("Capital letters can be ignored.", () => {
-    const wrap = "";
-    const wrap1 = substitutionModule.substitution("z", alphabet, encode = true);
-    expect(wrap).to.equal(wrap1);
+    const capital = "jrufscpw";
+    const capitalActual = substitutionModule.substitution("tHinkFul", "xoyqmcgrukswaflnthdjpzibev", encode = true);
+    expect(capital).to.equal(capitalActual);
   });
   it("The `alphabet` parameter must be a string of exactly 26 characters. Otherwise, it should return `false`.", () => {
-    const caps = "";
-    const capsActual = substitutionModule.substitution("ABC", alphabet, encode = true);
-    expect(caps).to.equal(capsActual);
+    const length = false;
+    const lengthActual = substitutionModule.substitution("abc","xoyqmcgrukswaflthdjpzibev", encode = true);
+    expect(lengthActual).to.equal(length);
   });
   it("All the characters in the `alphabet` parameter must be unique. Otherwise, return `false", () => {
-    const nonAlpha = "";
-    const nonAlphaActual = substitutionModule.substitution("z a/b", alphabet, encode = true);
-    expect(nonAlpha).to.equal(nonAlphaActual);
+    const noRepeats = false;
+    const noRepeatsActual = substitutionModule.substitution("zab", "xooqmcgrukswaflnthdjpzibev", encode = true);
+    expect(noRepeatsActual).to.equal(noRepeats);
+  });
+  it("should return false if the substitution alphabet is missing", () => {
+    const ifEmpty = false;
+    const ifEmptyActual = substitutionModule.substitution("zab", "", encode = true);
+    expect(ifEmptyActual).to.equal(ifEmpty);
   });
 });
