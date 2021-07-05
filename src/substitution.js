@@ -8,11 +8,10 @@ const substitutionModule = (function () {
     let message = "";
     const orderedAlpha = "abcdefghijklmnopqrstuvwxyz";
     smolInput = input.toLowerCase();
-    //if (!alphabet ) return false;
-    //check alphabet length
+    //early return check alphabet length
     if (alphabet.length !== 26 || !alphabet) return false;
-    //check for repeating chracters
-    for (var i = 0; i < alphabet.length; i++) {
+    //early return check for repeating chracters
+    for (let i = 0; i < alphabet.length; i++) {
       if (alphabet.indexOf(alphabet[i]) !== alphabet.lastIndexOf(alphabet[i])) {
         return false;
       }

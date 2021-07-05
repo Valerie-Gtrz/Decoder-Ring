@@ -64,6 +64,7 @@ const polybiusModule = (function () {
   function polybius(input, encode = true) {
     let outputString = "";
 
+    //encode
     if (encode) {
       const inputArray = input.toLowerCase().split("");
       for (let letter of inputArray) {
@@ -75,19 +76,20 @@ const polybiusModule = (function () {
       return outputString;
     }
 
+    //decode
     if (!encode) {
-      //check for even
+      //check for even number of letters only
       let trimInput = input.replace(/ /g, "");
-      let decodeArray = trimInput.split("");
-      let length = decodeArray.length;
-      if (!(length % 2 === 0)) return false;
-
       let outputArray = [];
 
+      //early return if string is uneven
+      if (!(trimInput.split("").length % 2 === 0)) return false;
+
       //accumlator pairs numbers and keeps spaces
-      for (i = 0; i < input.length; i = i + 2) {
+      for (i = 0; i < input.length; i = i+2) {
         let thisNum = input[i];
         let nextNum = input[i + 1];
+
         if (thisNum === " ") {
           outputArray.push(" ");
           i = i - 1;
@@ -95,11 +97,12 @@ const polybiusModule = (function () {
           outputArray.push(`${thisNum}${nextNum}`);
         }
       }
-      //loop through array
+
+      //loop through new array and match number to letter
       for (let number of outputArray) {
-        if (number === " ") {
-          outputString += number;
-        } else {
+
+        if (number === " ") outputString += number;
+        else {
           const numberMatch = numArray.filter(
             (pairedSets) => number == pairedSets[1]
           );

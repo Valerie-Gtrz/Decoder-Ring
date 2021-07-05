@@ -6,7 +6,9 @@
 const caesarModule = (function () {
 
   function caesar(input, shift, encode = true) {
+    //early return for if cases
     if (!shift || shift < -25 || shift > 25) return false;
+    //changed shift for decode
     if (!encode) shift *= -1;
     let lowerCaseInput = input.toLowerCase();
     const alphaArray = "abcdefghijklmnopqrstuvwxyz".split("");
